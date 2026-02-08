@@ -1,11 +1,14 @@
 ## used to package and distribute the project as a package.
 from setuptools import setup, find_packages
 from typing import List
+Hyphen_E_Dot = "-e ."
 def get_requirements(file_path:str)->List[str]:
     ## this function will return the list of requirements
     with open(file_path) as file:
         requirements = file.readlines()
         requirements = [req.replace("\n", "") for req in requirements if req.strip()]
+        if Hyphen_E_Dot in requirements:
+            requirements.remove(Hyphen_E_Dot)
     return requirements
 setup(
     name="MLPROJECT",
